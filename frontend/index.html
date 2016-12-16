@@ -6,27 +6,77 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Network Status</title>
         <link href="./static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./static/assets/index.css" rel="stylesheet">
 
     </head>
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-12">Heading</div>
+                <div class="col-xs-12 col-sm-12">
+                    <h3>Network Status</h3>
+                </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-12">Status</div>
+                <div class="col-xs-12 col-sm-12">
+                    <div class="alert alert-info" role="alert">
+                        Now testing, now testing
+                    </div>
+                    <div class="span12">
+                        <hr>
+                    </div>
+                </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-md-6">What's this site</div>
-                <div class="col-xs-12 col-md-6">What're these graphs</div>
+                <div class="col-xs-12 col-md-6">
+                    <h5>What's this site?</h5>
+                    <p>
+                    This page displays the status of Peking University campus LAN. If there are any confirmed interruptions in service, a note will be posted here.
+                    </p>
+                    <p>
+                    Source code of this site is available at <a href="https://github.com/yangl1996/network-monitor" target="blank">github.com/yangl1996</a>. The backend is written in Haskell.
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <h5>What're these graphs</h5>
+                    <p>
+                    These graphs are sampled periodically from machines at various locations in the campus. They’re accurate to within a few minutes.
+                    </p>
+                    <p>
+                    If you're interested in the data or willing to host a monitor, please contact <a href="mailto:i@yangl1996.com">me</a>.
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#hour" aria-controls="hour" role="tab" data-toggle="tab">Past Hour</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#day" aria-controls="day" role="tab" data-toggle="tab">Past Day</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#week" aria-controls="week" role="tab" data-toggle="tab">Past Week</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="hour">
+                            day
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="day">
+                            hour
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="week">
+                            week
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-12">Graph 1</div>
-            </div>
-
-        </div>
-        <script src="./static/jquery/jquery.min.js"></script>
-        <script src="./static/bootstrap/js/bootstrap.min.js"></script>
+            <script src="./static/jquery/jquery.min.js"></script>
+            <script src="./static/bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
