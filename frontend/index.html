@@ -8,6 +8,8 @@
         <link href="./static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="./static/assets/index.css" rel="stylesheet">
 
+        <script src="./static/chartjs/Chart.bundle.min.js"></script>
+
     </head>
     <body>
         <div class="container">
@@ -29,19 +31,19 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <h5>What's this site?</h5>
-                    <p>
+                    <p class="description">
                     This page displays the status of Peking University campus LAN. If there are any confirmed interruptions in service, a note will be posted here.
                     </p>
-                    <p>
+                    <p class="description">
                     Source code of this site is available at <a href="https://github.com/yangl1996/network-monitor" target="blank">github.com/yangl1996</a>. The backend is written in Haskell.
                     </p>
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <h5>What're these graphs</h5>
-                    <p>
+                    <p class="description">
                     These graphs are sampled periodically from machines at various locations in the campus. They’re accurate to within a few minutes.
                     </p>
-                    <p>
+                    <p class="description">
                     If you're interested in the data or willing to host a monitor, please contact <a href="mailto:i@yangl1996.com">me</a>.
                 </div>
             </div>
@@ -64,15 +66,130 @@
                 <div class="col-xs-12 col-md-12">
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="hour">
-                            day
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">Domestic Latency</span>
+                                    <span class="data">8ms</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="hour-domestic-latency"></canvas>
+                                </div>
+                            </div>
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">Domestic Packet Loss</span>
+                                    <span class="data">3.2%</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="hour-domestic-lossrate"></canvas>
+                                </div>
+                            </div>
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">International Latency</span>
+                                    <span class="data">8ms</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="hour-international-latency"></canvas>
+                                </div>
+                            </div>
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">International Packet Loss</span>
+                                    <span class="data">3.2%</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="hour-international-lossrate"></canvas>
+                                </div>
+                            </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="day">
-                            hour
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">Domestic Latency</span>
+                                    <span class="data">8ms</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="day-domestic-latency"></canvas>
+                                </div>
+                            </div>
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">Domestic Packet Loss</span>
+                                    <span class="data">3.2%</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="day-domestic-lossrate"></canvas>
+                                </div>
+                            </div>
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">International Latency</span>
+                                    <span class="data">8ms</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="day-international-latency"></canvas>
+                                </div>
+                            </div>
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">International Packet Loss</span>
+                                    <span class="data">3.2%</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="day-international-lossrate"></canvas>
+                                </div>
+                            </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="week">
-                            week
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">Domestic Latency</span>
+                                    <span class="data">8ms</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="week-domestic-latency"></canvas>
+                                </div>
+                            </div>
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">Domestic Packet Loss</span>
+                                    <span class="data">3.2%</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="week-domestic-lossrate"></canvas>
+                                </div>
+                            </div>
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">International Latency</span>
+                                    <span class="data">8ms</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="week-international-latency"></canvas>
+                                </div>
+                            </div>
+                            <div class="row data-row">
+                                <div class="col-xs-12 col-sm-4">
+                                    <span class="data-label">International Packet Loss</span>
+                                    <span class="data">3.2%</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <canvas id="week-international-lossrate"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    <div class="span12">
+                        <hr>
+                    </div>
+                    <p class="footer">
+                    Operated by <a href="http://www.yangl1996.com" target="blank">Lei Yang</a>. This site does <b>not</b> officially represent NOC of Peking University.
+                    </p>
                 </div>
             </div>
 
