@@ -9,6 +9,7 @@
         <link href="./static/assets/index.css" rel="stylesheet">
 
         <script src="./static/chartjs/Chart.bundle.min.js"></script>
+        <script src="./static/assets/graph.js"></script>
 
     </head>
     <body>
@@ -73,6 +74,12 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-8">
                                     <canvas id="hour-domestic-latency"></canvas>
+                                    <script>
+var graph1 = draw("hour-domestic-latency", 
+        "test", 
+        ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        [12, 19, 3, NaN, NaN, 3])
+                                    </script>
                                 </div>
                             </div>
                             <div class="row data-row">
