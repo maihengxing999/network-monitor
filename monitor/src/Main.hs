@@ -13,6 +13,7 @@ main = do
   rst <- ping target count
   print $ rst
 
+ping :: String -> Int -> IO (Maybe Float, Maybe Float)
 ping target count = do
   (err, msg, _) <- readProcessWithExitCode "ping" ["-c", show count, target] ""
   let lossPtn = mkRegex "packets received, (.+)% packet loss"
