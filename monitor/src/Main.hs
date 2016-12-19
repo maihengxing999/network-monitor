@@ -9,12 +9,11 @@ import Text.Regex
 main :: IO ()
 main = do
   let count = 1
-  let target = "192.168.1.1"
---  rst <- ping "192.168.1.1" 1
---  print rst
---
---ping :: String -> Int -> (Maybe Float, Maybe Float)
---ping target count = do
+  let target = "baidu.com"
+  rst <- ping target count
+  print $ rst
+
+ping target count = do
   (err, msg, _) <- readProcessWithExitCode "ping" ["-c", show count, target] ""
   let lossPtn = mkRegex "packets received, (.+)% packet loss"
   let latencyPtn = mkRegex "round-trip min\\/avg\\/max\\/stddev = (.+)\\/(.+)\\/(.+)\\/(.+) ms"
@@ -22,5 +21,5 @@ main = do
   let latencySub = head <$> matchRegex latencyPtn msg
   let loss = read <$> (lossSub :: Maybe String) :: Maybe Float
   let latency = read <$> (latencySub :: Maybe String) :: Maybe Float
-  print latency
+  return (loss, latency)
 
