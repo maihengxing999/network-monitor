@@ -2,16 +2,20 @@ module Main where
 
 import Data.Array
 import System.Process
+import System.Environment
 import Control.Monad
 import Text.Regex.Base
 import Text.Regex
 
 main :: IO ()
+main = alter
 main = do
-  let count = 1
-  let target = "baidu.com"
-  rst <- ping target count
-  print $ rst
+  count <- read <$> getEnv "MONITOR_PING_COUNT" :: IO Int
+  influx <- getEnv "MONITOR_INFLUXDB_ADDR"
+  results <- map (\ y -> ping y count) <$> getArgs
+  let resultStr = map (\ y -> show <$> y) results
+  let str = unlines <$> sequence resultStr
+  str >>= putStrLn
 
 ping :: String -> Int -> IO (Maybe Float, Maybe Float)
 ping target count = do
